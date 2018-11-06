@@ -15,9 +15,9 @@ export default function restaurantsList({ top }) {
         margin: '0 auto'
       }}
     >
-      <Row gutter={20}>
+      <Row gutter={20} justify={'around'}>
         {restaurants.map(r => (
-          <Col span={3}>
+          <Col key={r.id} xs={12} sm={4} md={4} lg={3} xl={3}>
             <RestaurantCard
               key={r.id}
               id={r.id}

@@ -68,6 +68,7 @@ const Image = styled.img`
   height: 100%;
   object-fit: cover;
   min-height: 200px;
+  max-height: 200px;
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
 `

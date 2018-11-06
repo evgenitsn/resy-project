@@ -6,6 +6,7 @@ import Header from '../components/Header'
 import PageTitle from '../styled/PageTitle'
 import Hr from '../styled/Hr'
 import { Row, Col } from 'react-simple-flex-grid'
+import ReservationForm from '../components/ReservationForm'
 
 import data from '../restaurantsList'
 import { relative } from 'path'
@@ -52,7 +53,7 @@ const HeroImage = styled.img`
 `
 
 const InfoCardContainer = styled.div`
-  margin: 0.5rem;
+  margin: 1rem;
   background: #485a7d;
   color: white;
   border-radius: 0.8rem;
@@ -90,6 +91,21 @@ const Location = styled.p`
   padding-right: 1rem;
   margin-top: 0.4rem;
   margin-bottom: 0.4rem;
+`
+
+const FormContainer = styled.div`
+  margin: 1rem;
+  background-color: #253759;
+  border-radius: 0.8rem;
+  padding: 2rem;
+`
+
+const FormTitle = styled.p`
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1rem;
+  margin: 0;
 `
 
 export default function Restaurant({ match }) {
@@ -134,8 +150,17 @@ export default function Restaurant({ match }) {
           </FavoriteButton>
         )}
       </div>
-      <Row gutter={20}>
-        <Col span={6}>
+      <Row>
+        <Col xs={12} sm={6} md={6} lg={6} xl={6}>
+          <InfoCardContainer>
+            <Title>
+              {item.id} {item.title}
+            </Title>
+            <Location>{item.location}</Location>
+            <Location>{item.phone}</Location>
+            <Description>{item.description}</Description>
+          </InfoCardContainer>
+
           <InfoCardContainer>
             <Title>
               {item.id} {item.title}
@@ -145,7 +170,12 @@ export default function Restaurant({ match }) {
             <Description>{item.description}</Description>
           </InfoCardContainer>
         </Col>
-        <Col span={6} />
+        <Col xs={12} sm={6} md={6} lg={6} xl={6}>
+          <FormContainer>
+            <FormTitle>MAKE RESERVATION</FormTitle>
+            <ReservationForm />
+          </FormContainer>
+        </Col>
       </Row>
 
       <div>
