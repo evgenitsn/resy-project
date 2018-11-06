@@ -8,7 +8,6 @@ import Hr from '../styled/Hr'
 import { Row, Col } from 'react-simple-flex-grid'
 
 import data from '../restaurantsList'
-import restaurantHero from '../images/restaurant-hero.png'
 import { relative } from 'path'
 
 const AllRestaurantsButton = styled.button`

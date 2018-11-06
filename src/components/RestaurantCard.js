@@ -84,9 +84,7 @@ export default function RestaurantCard({
   return (
     <CardContainer>
       <Image src={cardPhoto} />
-      <Title>
-        {id} {title}
-      </Title>
+      <Title>{title}</Title>
       <Location>{location}</Location>
       <Description>{description}</Description>
       <Link to={`/restaurant/${id}`}>
