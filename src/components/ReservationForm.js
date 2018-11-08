@@ -6,9 +6,9 @@ import styled from 'styled-components'
 const InputField = styled.input`
   border: 1px solid #00dfb2;
   border-radius: 0.8rem;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 0.5rem;
-  width: 80%;
+  width: 90%;
   height: 40px;
   background-color: #253759;
   ::placeholder {
@@ -18,13 +18,14 @@ const InputField = styled.input`
 `
 
 const SubmitButton = styled.button`
+  width: 90%;
   border: 1px solid #00dfb2;
   border-radius: 0.8rem;
   background-color: #253759;
   color: white;
   font-size: 1.2rem;
   margin-top: 2rem;
-  padding: 1rem 8rem;
+  padding: 0.7rem 0rem;
 `
 
 export default function ReservationForm() {
@@ -61,8 +62,7 @@ export default function ReservationForm() {
           handleChange,
           handleBlur,
           handleSubmit,
-          isValid,
-          handleReset
+          isValid
         } = props
         return (
           <form

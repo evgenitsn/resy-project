@@ -8,8 +8,11 @@ import Hr from '../styled/Hr'
 import { Row, Col } from 'react-simple-flex-grid'
 import ReservationForm from '../components/ReservationForm'
 
+import addToFavImg from '../images/add-to-fav.png'
+import removeFromFavImg from '../images/remove-from-fav.png'
 import data from '../restaurantsList'
-import { relative } from 'path'
+
+import StarRatings from 'react-star-ratings'
 
 const AllRestaurantsButton = styled.button`
   background: white;
@@ -17,7 +20,7 @@ const AllRestaurantsButton = styled.button`
   padding-right: 2rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   color: #00dfb2;
   outline: none;
   border-radius: 0.8rem;
@@ -32,15 +35,21 @@ const AllRestaurantsButton = styled.button`
 
 const FavoriteButton = styled.button`
   position: absolute;
-  left: 2rem;
-  top: 6rem;
+  left: 3rem;
+  top: 3rem;
   border-radius: 100%;
   width: 3rem;
   height: 3rem;
-  background: #00dfb2;
+  background: transparent;
   color: white;
   border: none;
   outline: none;
+  margin: 0;
+  padding: 0;
+  @media screen and (max-width: 500px) {
+    left: 1rem;
+    top: 1rem;
+  }
 `
 
 const HeroImage = styled.img`
@@ -57,7 +66,6 @@ const InfoCardContainer = styled.div`
   background: #485a7d;
   color: white;
   border-radius: 0.8rem;
-  padding-bottom: 1.2rem;
   min-width: 240px;
   display: flex;
   flex-direction: column;
@@ -69,16 +77,18 @@ const Title = styled.p`
   font-size: 1.3rem;
   margin: 0;
   padding: 0;
-  padding-top: 0.8rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-top: 1.2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 `
 const Description = styled.p`
   font-size: 1.1rem;
   margin: 0;
   padding: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 1.2rem;
+  padding-top: 1.2rem;
   text-align: left;
 `
 
@@ -87,10 +97,10 @@ const Location = styled.p`
   font-size: 0.8rem;
   margin: 0;
   padding: 0;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-top: 0.4rem;
-  margin-bottom: 0.4rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  /* margin-top: 0.4rem;
+  margin-bottom: 0.4rem; */
 `
 
 const FormContainer = styled.div`
@@ -102,10 +112,39 @@ const FormContainer = styled.div`
 
 const FormTitle = styled.p`
   color: white;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin: 0;
+`
+
+const SingleReview = styled.div`
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: ${({ even }) => (even ? '#253759' : '#485a7d')};
+  border-top-left-radius: ${({ first }) => (first ? '0.8rem' : 0)};
+  border-top-right-radius: ${({ first }) => (first ? '0.8rem' : 0)};
+  border-bottom-left-radius: ${({ last }) => (last ? '0.8rem' : 0)};
+  border-bottom-right-radius: ${({ last }) => (last ? '0.8rem' : 0)};
+`
+
+const ReviewerPhoto = styled.img`
+  border-radius: 100%;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+`
+
+const ReviewDescription = styled.p`
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 `
 
 export default function Restaurant({ match }) {
@@ -138,45 +177,117 @@ export default function Restaurant({ match }) {
   return (
     <div>
       <Header />
-      <div style={{ position: relative }}>
+      <div style={{ position: 'relative' }}>
         <HeroImage src={item.photos} />
         {isFavorite ? (
           <FavoriteButton onClick={() => removeFromFavories(item)}>
-            Unfav
+            <img alt="Remove Fav Img" width={60} src={removeFromFavImg} />
           </FavoriteButton>
         ) : (
           <FavoriteButton onClick={() => addToFavorites(item)}>
-            Fav
+            <img alt="Add Fav Img" width={60} src={addToFavImg} />
           </FavoriteButton>
         )}
       </div>
-      <Row>
-        <Col xs={12} sm={6} md={6} lg={6} xl={6}>
-          <InfoCardContainer>
-            <Title>
-              {item.id} {item.title}
-            </Title>
-            <Location>{item.location}</Location>
-            <Location>{item.phone}</Location>
-            <Description>{item.description}</Description>
-          </InfoCardContainer>
-
-          <InfoCardContainer>
-            <Title>
-              {item.id} {item.title}
-            </Title>
-            <Location>{item.location}</Location>
-            <Location>{item.phone}</Location>
-            <Description>{item.description}</Description>
-          </InfoCardContainer>
-        </Col>
-        <Col xs={12} sm={6} md={6} lg={6} xl={6}>
-          <FormContainer>
-            <FormTitle>MAKE RESERVATION</FormTitle>
-            <ReservationForm />
-          </FormContainer>
-        </Col>
-      </Row>
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}
+      >
+        <Row gutter={20} justify={'around'}>
+          <Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <InfoCardContainer>
+              <Title>
+                {item.id} {item.title}
+              </Title>
+              <Location>{item.location}</Location>
+              <Location>{item.phone}</Location>
+              <Description>{item.description}</Description>
+            </InfoCardContainer>
+            <InfoCardContainer>
+              {item.reviews.map(r => (
+                <SingleReview
+                  style={{
+                    width: '100%'
+                  }}
+                  first={parseInt(r.id) === 1}
+                  last={parseInt(r.id) === item.reviews.length}
+                  even={parseInt(r.id) % 2 === 0}
+                  key={r.id}
+                >
+                  <div
+                    style={{
+                      marginTop: '1rem',
+                      display: 'flex',
+                      marginLeft: '1rem'
+                    }}
+                  >
+                    <ReviewerPhoto src={r.photo} />
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start'
+                      }}
+                    >
+                      <p
+                        style={{
+                          margin: 0,
+                          marginLeft: '1rem',
+                          padding: 0,
+                          fontWeight: 'bold',
+                          textAlign: 'left'
+                        }}
+                      >
+                        {r.reviewerName}
+                      </p>
+                      <p
+                        style={{
+                          margin: 0,
+                          marginLeft: '1rem',
+                          padding: 0,
+                          fontWeight: 'lighter',
+                          textAlign: 'left'
+                        }}
+                      >
+                        {r.date}
+                      </p>
+                      <div
+                        style={{
+                          margin: 0,
+                          marginLeft: '.9rem',
+                          padding: 0,
+                          paddingTop: '.2rem',
+                          fontWeight: 'lighter',
+                          textAlign: 'left'
+                        }}
+                      >
+                        <StarRatings
+                          rating={parseInt(r.rating)}
+                          starRatedColor="#FFDF3B"
+                          starDimension="16px"
+                          starSpacing="2px"
+                          numberOfStars={5}
+                          name="rating"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <ReviewDescription>{r.description}</ReviewDescription>
+                </SingleReview>
+              ))}
+            </InfoCardContainer>
+          </Col>
+          <Col xs={12} sm={6} md={6} lg={6} xl={6}>
+            <FormContainer>
+              <FormTitle>MAKE RESERVATION</FormTitle>
+              <ReservationForm />
+            </FormContainer>
+          </Col>
+        </Row>
+      </div>
 
       <div>
         <PageTitle>Top Restaurants</PageTitle>

@@ -16,8 +16,9 @@ const Title = styled.h1`
 `
 
 const Description = styled.h4`
-  margin-left: 12rem;
-  margin-right: 12rem;
+  max-width: 34rem;
+  margin: 0 auto;
+  margin-bottom: 3rem;
   font-size: 2rem;
   font-weight: 300;
   color: white;
@@ -25,17 +26,16 @@ const Description = styled.h4`
 
 const CTAButton = styled.button`
   background: #00dfb2;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
   margin-bottom: 4rem;
   color: white;
   outline: none;
   border-radius: 0.8rem;
   border: none;
-  font-size: 1.5rem;
-  font-weight: 200;
+  font-size: 1.3rem;
   &:hover {
     cursor: pointer;
   }
@@ -52,11 +52,11 @@ export default function Home() {
   return (
     <>
       <LandingDiv>
-        <Header home={true} />
+        <Header home={true ? 1 : 0} />
         <Title>RESY</Title>
         <Description>
-          From this site, you can make your favorite restaurant reservations
-          quickly and easily in just a few steps.
+          Make your favorite restaurant reservations quickly and easily in just
+          a few steps.
         </Description>
         <Link to="/restaurants/">
           <CTAButton>Restaurants</CTAButton>

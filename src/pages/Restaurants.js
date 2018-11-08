@@ -7,7 +7,7 @@ import Hr from '../styled/Hr'
 export default function Restaurants() {
   return (
     <div>
-      <Header home={false} />
+      <Header />
       <PageTitle>Restaurants</PageTitle>
       <Hr />
       <div>

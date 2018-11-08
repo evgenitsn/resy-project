@@ -10,6 +10,7 @@ export default [
     photos: 'https://i.imgur.com/mAt5eCw.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Ivanov',
         photo: 'https://i.imgur.com/unvYnA1.jpg',
         date: '23 November 2018',
@@ -18,6 +19,7 @@ export default [
           'Great ambiance, great service, delicious food. What else do you want? After a day of average food in Varna we came here and were not disappointed. The meat skewers were incredible and the lime pie for dessert was to die for.'
       },
       {
+        id: 2,
         reviewerName: 'Petya Todorova',
         photo: 'https://i.imgur.com/zYXAZN1.jpg',
         date: '10 October 2018',
@@ -26,6 +28,7 @@ export default [
           'An incredible place. The staff is great and the food is just great.'
       },
       {
+        id: 3,
         reviewerName: 'Genadi Georgiev',
         photo: 'https://i.imgur.com/R4pl7uk.jpg',
         date: '23 August 2018',
@@ -46,6 +49,7 @@ export default [
     photos: 'https://i.imgur.com/hQH6O7e.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Petrov',
         photo: 'https://i.imgur.com/olfaDSK.jpg',
         date: '23 December 2018',
@@ -54,6 +58,7 @@ export default [
           'Bit of a mixture restaurant at night cafe/bar during the day so a bit of everything. Food is supposed to be caribbean, and music is all reggiefied (killing well known songs). Better than normal Bulgarian food as not all fish is fried, and resonable price.'
       },
       {
+        id: 2,
         reviewerName: 'Vladislav Nikolov',
         photo: 'https://i.imgur.com/W71fNlC.jpg',
         date: '17 October 2018',
@@ -62,6 +67,7 @@ export default [
           'Food was average but service was good. View was excellent. We tried octopus and fish. Fish was a little too dry.'
       },
       {
+        id: 3,
         reviewerName: 'Damyan Gergiev',
         photo: 'https://i.imgur.com/fVMD1Gi.jpg',
         date: '10 October 2018',
@@ -82,6 +88,7 @@ export default [
     photos: 'https://i.imgur.com/EIbcBTM.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Ivanov',
         photo: 'https://i.imgur.com/unvYnA1.jpg',
         date: '23 November 2018',
@@ -90,6 +97,7 @@ export default [
           'Great ambiance, great service, delicious food. What else do you want? After a day of average food in Varna we came here and were not disappointed. The meat skewers were incredible and the lime pie for dessert was to die for.'
       },
       {
+        id: 2,
         reviewerName: 'Petya Todorova',
         photo: 'https://i.imgur.com/zYXAZN1.jpg',
         date: '10 October 2018',
@@ -98,6 +106,7 @@ export default [
           'An incredible place. The staff is great and the food is just great.'
       },
       {
+        id: 3,
         reviewerName: 'Genadi Georgiev',
         photo: 'https://i.imgur.com/R4pl7uk.jpg',
         date: '23 August 2018',
@@ -118,6 +127,7 @@ export default [
     photos: 'https://i.imgur.com/XekhENC.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Petrov',
         photo: 'https://i.imgur.com/olfaDSK.jpg',
         date: '23 December 2018',
@@ -126,6 +136,7 @@ export default [
           'Bit of a mixture restaurant at night cafe/bar during the day so a bit of everything. Food is supposed to be caribbean, and music is all reggiefied (killing well known songs). Better than normal Bulgarian food as not all fish is fried, and resonable price.'
       },
       {
+        id: 2,
         reviewerName: 'Vladislav Nikolov',
         photo: 'https://i.imgur.com/W71fNlC.jpg',
         date: '17 October 2018',
@@ -134,6 +145,7 @@ export default [
           'Food was average but service was good. View was excellent. We tried octopus and fish. Fish was a little too dry.'
       },
       {
+        id: 3,
         reviewerName: 'Damyan Gergiev',
         photo: 'https://i.imgur.com/fVMD1Gi.jpg',
         date: '10 October 2018',
@@ -154,6 +166,7 @@ export default [
     photos: 'https://i.imgur.com/52lhVtN.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Ivanov',
         photo: 'https://i.imgur.com/unvYnA1.jpg',
         date: '23 November 2018',
@@ -162,6 +175,7 @@ export default [
           'Great ambiance, great service, delicious food. What else do you want? After a day of average food in Varna we came here and were not disappointed. The meat skewers were incredible and the lime pie for dessert was to die for.'
       },
       {
+        id: 2,
         reviewerName: 'Petya Todorova',
         photo: 'https://i.imgur.com/zYXAZN1.jpg',
         date: '10 October 2018',
@@ -170,6 +184,7 @@ export default [
           'An incredible place. The staff is great and the food is just great.'
       },
       {
+        id: 3,
         reviewerName: 'Genadi Georgiev',
         photo: 'https://i.imgur.com/R4pl7uk.jpg',
         date: '23 August 2018',
@@ -190,6 +205,7 @@ export default [
     photos: 'https://i.imgur.com/z6jKEVI.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Petrov',
         photo: 'https://i.imgur.com/olfaDSK.jpg',
         date: '23 December 2018',
@@ -198,6 +214,7 @@ export default [
           'Bit of a mixture restaurant at night cafe/bar during the day so a bit of everything. Food is supposed to be caribbean, and music is all reggiefied (killing well known songs). Better than normal Bulgarian food as not all fish is fried, and resonable price.'
       },
       {
+        id: 2,
         reviewerName: 'Vladislav Nikolov',
         photo: 'https://i.imgur.com/W71fNlC.jpg',
         date: '17 October 2018',
@@ -206,6 +223,7 @@ export default [
           'Food was average but service was good. View was excellent. We tried octopus and fish. Fish was a little too dry.'
       },
       {
+        id: 3,
         reviewerName: 'Damyan Gergiev',
         photo: 'https://i.imgur.com/fVMD1Gi.jpg',
         date: '10 October 2018',
@@ -226,6 +244,7 @@ export default [
     photos: 'https://i.imgur.com/6vUP13r.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Ivanov',
         photo: 'https://i.imgur.com/unvYnA1.jpg',
         date: '23 November 2018',
@@ -234,6 +253,7 @@ export default [
           'Great ambiance, great service, delicious food. What else do you want? After a day of average food in Varna we came here and were not disappointed. The meat skewers were incredible and the lime pie for dessert was to die for.'
       },
       {
+        id: 2,
         reviewerName: 'Petya Todorova',
         photo: 'https://i.imgur.com/zYXAZN1.jpg',
         date: '10 October 2018',
@@ -242,6 +262,7 @@ export default [
           'An incredible place. The staff is great and the food is just great.'
       },
       {
+        id: 3,
         reviewerName: 'Genadi Georgiev',
         photo: 'https://i.imgur.com/R4pl7uk.jpg',
         date: '23 August 2018',
@@ -262,6 +283,7 @@ export default [
     photos: 'https://i.imgur.com/lAegQhh.jpg',
     reviews: [
       {
+        id: 1,
         reviewerName: 'Ivan Ivanov',
         photo: 'https://i.imgur.com/unvYnA1.jpg',
         date: '23 November 2018',
@@ -270,6 +292,7 @@ export default [
           'Great ambiance, great service, delicious food. What else do you want? After a day of average food in Varna we came here and were not disappointed. The meat skewers were incredible and the lime pie for dessert was to die for.'
       },
       {
+        id: 2,
         reviewerName: 'Petya Todorova',
         photo: 'https://i.imgur.com/zYXAZN1.jpg',
         date: '10 October 2018',
@@ -278,6 +301,7 @@ export default [
           'An incredible place. The staff is great and the food is just great.'
       },
       {
+        id: 3,
         reviewerName: 'Genadi Georgiev',
         photo: 'https://i.imgur.com/R4pl7uk.jpg',
         date: '23 August 2018',

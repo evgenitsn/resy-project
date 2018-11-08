@@ -14,6 +14,14 @@ const CardContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  @media screen and (max-width: 800px) {
+    margin: 0.5rem;
+    min-width: 220px;
+  }
+  @media screen and (max-width: 400px) {
+    margin: 1rem;
+    min-width: 220px;
+  }
 `
 
 const Description = styled.p`

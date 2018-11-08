@@ -11,15 +11,15 @@ export default function restaurantsList({ top }) {
   return (
     <div
       style={{
-        maxWidth: '1100px',
+        maxWidth: '1200px',
         margin: '0 auto'
       }}
     >
       <Row gutter={20} justify={'around'}>
         {restaurants.map(r => (
-          <Col key={r.id} xs={12} sm={4} md={4} lg={3} xl={3}>
+          <Col key={r.id + r.title} xs={12} sm={4} md={4} lg={3} xl={3}>
             <RestaurantCard
-              key={r.id}
+              key={r.id + r.title}
               id={r.id}
               title={r.title}
               location={r.location}

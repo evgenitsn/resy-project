@@ -15,15 +15,14 @@ export default function Favorites() {
       <Hr />
       <div
         style={{
-          maxWidth: '1100px',
+          maxWidth: '1200px',
           margin: '0 auto'
         }}
       >
-        <Row gutter={20}>
+        <Row>
           {favorites.map(fr => (
-            <Col span={3}>
+            <Col key={fr.id} xs={12} sm={4} md={4} lg={3} xl={3}>
               <RestaurantCard
-                key={fr.id}
                 id={fr.id}
                 title={fr.title}
                 location={fr.location}
