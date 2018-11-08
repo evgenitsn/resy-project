@@ -15,6 +15,8 @@ const InputField = styled.input`
     color: white;
     opacity: 1;
   }
+  outline: none;
+  color: white;
 `
 
 const SubmitButton = styled.button`
@@ -26,22 +28,45 @@ const SubmitButton = styled.button`
   font-size: 1.2rem;
   margin-top: 2rem;
   padding: 0.7rem 0rem;
+  outline: none;
 `
 
-export default function ReservationForm() {
+function readFromLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key)) || []
+}
+
+function updateToLocalStorage(key, update) {
+  localStorage.setItem(key, JSON.stringify(update))
+}
+
+function addToLocalStorage(item) {
+  let current = readFromLocalStorage('reservations')
+  let update = [...current, item]
+  updateToLocalStorage('reservations', update)
+}
+
+export default function ReservationForm({ restaurantData }) {
   function handleSubmit(values) {
-    console.log(values)
+    addToLocalStorage({ ...values, restaurantData })
   }
 
   return (
     <Formik
-      initialValues={{ name: '', email: '', message: '' }}
+      initialValues={{
+        fullName: '',
+        phone: '',
+        numberOfPeople: '',
+        date: '',
+        time: '',
+        smoking: ''
+      }}
       validationSchema={Yup.object().shape({
         fullName: Yup.string()
           .min(2, 'Името трябва да съдържа поне 2 символа')
           .required('Задължително поле'),
         phone: Yup.string().required('Задължително поле'),
         numberOfPeople: Yup.number()
+          .typeError('Число')
           .min(1, 'Минимум 1 човек')
           .max(8, 'Максимум 8 човека')
           .required('Задължително поле'),
@@ -76,10 +101,10 @@ export default function ReservationForm() {
             onSubmit={handleSubmit}
           >
             <InputField
-              id="name"
+              id="fullName"
               placeholder="Full name *"
               type="text"
-              name="name"
+              name="fullName"
               value={values.fullName}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -89,10 +114,9 @@ export default function ReservationForm() {
                   : 'text-input'
               }
             />
-            {errors.fullName &&
-              touched.fullName && (
-                <div style={{ color: 'red' }}>{errors.fullName}</div>
-              )}
+            {errors.fullName && touched.fullName && (
+              <div style={{ color: 'red' }}>{errors.fullName}</div>
+            )}
 
             <InputField
               id="phone"
@@ -108,10 +132,9 @@ export default function ReservationForm() {
                   : 'text-input'
               }
             />
-            {errors.phone &&
-              touched.phone && (
-                <div style={{ color: 'red' }}>{errors.phone}</div>
-              )}
+            {errors.phone && touched.phone && (
+              <div style={{ color: 'red' }}>{errors.phone}</div>
+            )}
             <InputField
               id="numberOfPeople"
               placeholder="Number of people *"
@@ -126,10 +149,9 @@ export default function ReservationForm() {
                   : 'text-input'
               }
             />
-            {errors.numberOfPeople &&
-              touched.numberOfPeople && (
-                <div style={{ color: 'red' }}>{errors.numberOfPeople}</div>
-              )}
+            {errors.numberOfPeople && touched.numberOfPeople && (
+              <div style={{ color: 'red' }}>{errors.numberOfPeople}</div>
+            )}
 
             <InputField
               id="date"
@@ -143,8 +165,9 @@ export default function ReservationForm() {
                 errors.date && touched.date ? 'text-input error' : 'text-input'
               }
             />
-            {errors.date &&
-              touched.date && <div style={{ color: 'red' }}>{errors.date}</div>}
+            {errors.date && touched.date && (
+              <div style={{ color: 'red' }}>{errors.date}</div>
+            )}
             <InputField
               id="time"
               placeholder="Time *"
@@ -157,8 +180,9 @@ export default function ReservationForm() {
                 errors.time && touched.time ? 'text-input error' : 'text-input'
               }
             />
-            {errors.time &&
-              touched.time && <div style={{ color: 'red' }}>{errors.time}</div>}
+            {errors.time && touched.time && (
+              <div style={{ color: 'red' }}>{errors.time}</div>
+            )}
 
             <InputField
               id="smoking"
@@ -174,10 +198,9 @@ export default function ReservationForm() {
                   : 'text-input'
               }
             />
-            {errors.smoking &&
-              touched.smoking && (
-                <div style={{ color: 'red' }}>{errors.smoking}</div>
-              )}
+            {errors.smoking && touched.smoking && (
+              <div style={{ color: 'red' }}>{errors.smoking}</div>
+            )}
 
             <SubmitButton type="submit" disabled={isSubmitting}>
               Reserve
