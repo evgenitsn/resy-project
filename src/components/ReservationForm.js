@@ -2,8 +2,46 @@ import React from 'react'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import styled from 'styled-components'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 const InputField = styled.input`
+  border: 1px solid #00dfb2;
+  border-radius: 0.8rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: 90%;
+  height: 40px;
+  background-color: #253759;
+  ::placeholder {
+    color: white;
+    opacity: 1;
+  }
+  outline: none;
+  color: white;
+`
+
+const SelectField = styled.select`
+  border: 1px solid #00dfb2;
+  border-radius: 0.8rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: 90%;
+  height: 40px;
+  background-color: #253759;
+  ::placeholder {
+    color: white;
+    opacity: 1;
+  }
+  outline: none;
+  color: white;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0.8rem;
+`
+
+const DatePickerStyled = styled(DatePicker)`
   border: 1px solid #00dfb2;
   border-radius: 0.8rem;
   margin: 1rem 0;
@@ -24,11 +62,16 @@ const SubmitButton = styled.button`
   border: 1px solid #00dfb2;
   border-radius: 0.8rem;
   background-color: #253759;
-  color: white;
+  color: #00dfb2;
   font-size: 1.2rem;
   margin-top: 2rem;
   padding: 0.7rem 0rem;
   outline: none;
+  &:hover {
+    cursor: pointer;
+    color: #253759;
+    background-color: #00dfb2;
+  }
 `
 
 function readFromLocalStorage(key) {
@@ -45,9 +88,10 @@ function addToLocalStorage(item) {
   updateToLocalStorage('reservations', update)
 }
 
-export default function ReservationForm({ restaurantData }) {
+export default function ReservationForm({ restaurantData, history }) {
   function handleSubmit(values) {
     addToLocalStorage({ ...values, restaurantData })
+    history.push('/my-reservations')
   }
 
   return (
@@ -62,17 +106,17 @@ export default function ReservationForm({ restaurantData }) {
       }}
       validationSchema={Yup.object().shape({
         fullName: Yup.string()
-          .min(2, 'Името трябва да съдържа поне 2 символа')
-          .required('Задължително поле'),
-        phone: Yup.string().required('Задължително поле'),
+          .min(2, 'The name should be at least 2 characters')
+          .required('Required Field'),
+        phone: Yup.string().required('Required Field'),
         numberOfPeople: Yup.number()
-          .typeError('Число')
-          .min(1, 'Минимум 1 човек')
-          .max(8, 'Максимум 8 човека')
-          .required('Задължително поле'),
-        date: Yup.string().required('Задължително поле'),
-        time: Yup.string().required('Задължително поле'),
-        smoking: Yup.string().required('Задължително поле')
+          .typeError('Number of people should be a digit (1-8)')
+          .min(1, 'Min 1 person')
+          .max(8, 'Max 8 people')
+          .required('Required Field'),
+        date: Yup.date().required('Required Field'),
+        time: Yup.string().required('Required Field'),
+        smoking: Yup.string().required('Required Field')
       })}
       onSubmit={values => {
         handleSubmit(values)
@@ -87,8 +131,10 @@ export default function ReservationForm({ restaurantData }) {
           handleChange,
           handleBlur,
           handleSubmit,
-          isValid
+          isValid,
+          setFieldValue
         } = props
+        console.log(values)
         return (
           <form
             style={{
@@ -135,60 +181,109 @@ export default function ReservationForm({ restaurantData }) {
             {errors.phone && touched.phone && (
               <div style={{ color: 'red' }}>{errors.phone}</div>
             )}
-            <InputField
-              id="numberOfPeople"
-              placeholder="Number of people *"
-              type="text"
+
+            <SelectField
               name="numberOfPeople"
               value={values.numberOfPeople}
               onChange={handleChange}
               onBlur={handleBlur}
-              className={
-                errors.numberOfPeople && touched.numberOfPeople
-                  ? 'text-input error'
-                  : 'text-input'
-              }
-            />
+            >
+              <option value="" label="Number of people *" />
+              <option value="1" label="1" />
+              <option value="2" label="2" />
+              <option value="3" label="3" />
+              <option value="4" label="4" />
+              <option value="5" label="5" />
+              <option value="6" label="6" />
+              <option value="7" label="7" />
+              <option value="8" label="8" />
+            </SelectField>
             {errors.numberOfPeople && touched.numberOfPeople && (
               <div style={{ color: 'red' }}>{errors.numberOfPeople}</div>
             )}
-
-            <InputField
-              id="date"
-              placeholder="Date *"
-              type="text"
+            <DatePickerStyled
               name="date"
-              value={values.date}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={
-                errors.date && touched.date ? 'text-input error' : 'text-input'
+              label="Date *"
+              onChange={e => {
+                setFieldValue('date', e._d)
+              }}
+              id="date"
+              placehoderText="Date *"
+              value={
+                values.date
+                  ? moment(values.date).format('Do MMM YYYY, ddd')
+                  : 'Date *'
               }
             />
             {errors.date && touched.date && (
               <div style={{ color: 'red' }}>{errors.date}</div>
             )}
-            <InputField
-              id="time"
-              placeholder="Time *"
-              type="text"
+            <DatePickerStyled
               name="time"
-              value={values.time}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={
-                errors.time && touched.time ? 'text-input error' : 'text-input'
-              }
+              label="Time *"
+              onChange={e => {
+                setFieldValue('time', e._d)
+              }}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              dateFormat="LT"
+              timeCaption="Time"
+              placehoderText="Time *"
+              value={values.time ? moment(values.time).format('LT') : 'Time *'}
             />
             {errors.time && touched.time && (
               <div style={{ color: 'red' }}>{errors.time}</div>
             )}
+            <div
+              style={{
+                width: '90%',
+                display: 'flex',
+                justifyContent: 'center'
+              }}
+            >
+              <label>
+                <input
+                  name="smoking"
+                  type="radio"
+                  value="Non Smoking"
+                  checked={values.smoking === 'Non Smoking'}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <div
+                  className="non-smoking box"
+                  style={{
+                    borderTopLeftRadius: '0.8rem',
+                    borderBottomLeftRadius: '0.8rem'
+                  }}
+                >
+                  <span style={{ whiteSpace: 'nowrap' }}>Non Smoking</span>
+                </div>
+              </label>
+              <label>
+                <input
+                  name="smoking"
+                  type="radio"
+                  value="Smoking"
+                  checked={values.smoking === 'Smoking'}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <div
+                  className="smoking box"
+                  style={{
+                    borderTopRightRadius: '0.8rem',
+                    borderBottomRightRadius: '0.8rem'
+                  }}
+                >
+                  <span style={{ whiteSpace: 'nowrap' }}>Smoking</span>
+                </div>
+              </label>
+            </div>
 
-            <InputField
-              id="smoking"
-              placeholder="Smoking *"
+            {/* <InputField
               type="text"
-              name="smoking"
               value={values.smoking}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -197,7 +292,7 @@ export default function ReservationForm({ restaurantData }) {
                   ? 'text-input error'
                   : 'text-input'
               }
-            />
+            /> */}
             {errors.smoking && touched.smoking && (
               <div style={{ color: 'red' }}>{errors.smoking}</div>
             )}

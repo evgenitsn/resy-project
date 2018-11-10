@@ -147,7 +147,7 @@ const ReviewDescription = styled.p`
   -webkit-box-orient: vertical;
 `
 
-export default function Restaurant({ match }) {
+export default function Restaurant({ match, history }) {
   const [favorites, setFavorites] = useState(readFromLocalStorage('favorites'))
 
   function readFromLocalStorage(key) {
@@ -283,7 +283,7 @@ export default function Restaurant({ match }) {
           <Col xs={12} sm={6} md={6} lg={6} xl={6}>
             <FormContainer>
               <FormTitle>MAKE RESERVATION</FormTitle>
-              <ReservationForm restaurantData={item} />
+              <ReservationForm restaurantData={item} history={history} />
             </FormContainer>
           </Col>
         </Row>

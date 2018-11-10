@@ -114,3 +114,45 @@ code {
     opacity: 1;
   }
 }
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+  width: 100%;
+}
+
+.react-datepicker__time-container {
+  width: 80px;
+}
+
+.react-datepicker__time-list {
+  font-size: 0.7rem;
+}
+
+.box {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #00dfb2;
+  padding: 0.2rem 1.8rem;
+}
+
+.box span {
+  font-size: 0.8rem;
+  user-select: none;
+  color: #00dfb2;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+input[type='radio']:checked + .box {
+  color: #253759;
+  background-color: #00dfb2;
+}
+
+input[type='radio']:checked + .box span {
+  color: #253759;
+}
