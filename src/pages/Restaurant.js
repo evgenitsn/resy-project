@@ -198,9 +198,7 @@ export default function Restaurant({ match, history }) {
         <Row gutter={20} justify={'around'}>
           <Col xs={12} sm={6} md={6} lg={6} xl={6}>
             <InfoCardContainer>
-              <Title>
-                {item.id} {item.title}
-              </Title>
+              <Title>{item.title}</Title>
               <Location>{item.location}</Location>
               <Location>{item.phone}</Location>
               <Description>{item.description}</Description>

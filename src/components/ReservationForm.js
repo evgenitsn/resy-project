@@ -61,8 +61,8 @@ const SubmitButton = styled.button`
   width: 90%;
   border: 1px solid #00dfb2;
   border-radius: 0.8rem;
-  background-color: #253759;
-  color: #00dfb2;
+  background-color: ${({ isValid }) => (isValid ? '#00dfb2' : '#253759')};
+  color: ${({ isValid }) => (!isValid ? '#00dfb2' : '#253759')};
   font-size: 1.2rem;
   margin-top: 2rem;
   padding: 0.7rem 0rem;
@@ -134,7 +134,6 @@ export default function ReservationForm({ restaurantData, history }) {
           isValid,
           setFieldValue
         } = props
-        console.log(values)
         return (
           <form
             style={{
@@ -167,7 +166,7 @@ export default function ReservationForm({ restaurantData, history }) {
             <InputField
               id="phone"
               placeholder="Phone *"
-              type="text"
+              type="number"
               name="phone"
               value={values.phone}
               onChange={handleChange}
@@ -188,15 +187,18 @@ export default function ReservationForm({ restaurantData, history }) {
               onChange={handleChange}
               onBlur={handleBlur}
             >
-              <option value="" label="Number of people *" />
-              <option value="1" label="1" />
-              <option value="2" label="2" />
-              <option value="3" label="3" />
-              <option value="4" label="4" />
-              <option value="5" label="5" />
-              <option value="6" label="6" />
-              <option value="7" label="7" />
-              <option value="8" label="8" />
+              <option value="" label="Number of people *">
+                Number of people *
+              </option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="8+">8+</option>
             </SelectField>
             {errors.numberOfPeople && touched.numberOfPeople && (
               <div style={{ color: 'red' }}>{errors.numberOfPeople}</div>
@@ -239,7 +241,8 @@ export default function ReservationForm({ restaurantData, history }) {
               style={{
                 width: '90%',
                 display: 'flex',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                padding: '1rem 0'
               }}
             >
               <label>
@@ -281,23 +284,15 @@ export default function ReservationForm({ restaurantData, history }) {
                 </div>
               </label>
             </div>
-
-            {/* <InputField
-              type="text"
-              value={values.smoking}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={
-                errors.smoking && touched.smoking
-                  ? 'text-input error'
-                  : 'text-input'
-              }
-            /> */}
             {errors.smoking && touched.smoking && (
               <div style={{ color: 'red' }}>{errors.smoking}</div>
             )}
 
-            <SubmitButton type="submit" disabled={isSubmitting}>
+            <SubmitButton
+              type="submit"
+              isValid={isValid}
+              disabled={isSubmitting}
+            >
               Reserve
             </SubmitButton>
           </form>
