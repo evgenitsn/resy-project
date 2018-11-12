@@ -5,15 +5,19 @@ import styled from 'styled-components'
 import Hr from '../styled/Hr'
 import { Row, Col } from 'react-simple-flex-grid'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 
 const ReservationCardContainer = styled.div`
   border-radius: 0.8rem;
   /* height: 15rem; */
   padding-bottom: 1rem;
   margin: 0 auto;
+  min-height: 270px;
   background: linear-gradient(316.33deg, #485a7d 0%, #071839 100%);
   margin-top: 1rem;
   margin-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `
 
 export default function MyReservations() {
@@ -46,8 +50,7 @@ export default function MyReservations() {
                     textAlign: 'left',
                     fontWeight: 500,
                     fontSize: '1.4rem',
-                    paddingTop: '0.6rem',
-                    paddingLeft: '1rem'
+                    paddingTop: '0.6rem'
                   }}
                 >
                   {moment(r.date).format('Do')}
@@ -57,8 +60,7 @@ export default function MyReservations() {
                     color: 'white',
                     textAlign: 'left',
                     fontWeight: 500,
-                    fontSize: '1.4rem',
-                    paddingLeft: '1rem'
+                    fontSize: '1.4rem'
                   }}
                 >
                   {moment(r.time).format('MMMM, dddd')}
@@ -70,7 +72,7 @@ export default function MyReservations() {
                     fontWeight: 900,
                     fontSize: '1.1rem',
                     paddingTop: '1.5rem',
-                    paddingLeft: '1.5rem'
+                    paddingLeft: '0.5rem'
                   }}
                 >
                   {r.restaurantData.title}
@@ -81,10 +83,15 @@ export default function MyReservations() {
                     textAlign: 'left',
                     fontWeight: 300,
                     fontSize: '1.1rem',
-                    paddingLeft: '2rem'
+                    paddingLeft: '1rem'
                   }}
                 >
-                  {r.restaurantData.location}
+                  <Link
+                    style={{ textDecoration: 'none', color: 'white' }}
+                    to={'/restaurant/' + r.restaurantData.id}
+                  >
+                    {r.restaurantData.location}
+                  </Link>
                 </div>
                 <div
                   style={{
@@ -92,7 +99,7 @@ export default function MyReservations() {
                     textAlign: 'left',
                     fontWeight: 300,
                     fontSize: '1.1rem',
-                    paddingLeft: '2rem'
+                    paddingLeft: '1rem'
                   }}
                 >
                   {r.restaurantData.phone}
@@ -103,7 +110,7 @@ export default function MyReservations() {
                     paddingTop: '1rem',
                     textAlign: 'left',
                     fontWeight: 500,
-                    paddingLeft: '1.5rem'
+                    paddingLeft: '0.5rem'
                   }}
                 >
                   {r.numberOfPeople}{' '}
@@ -114,7 +121,7 @@ export default function MyReservations() {
                     color: 'white',
                     textAlign: 'left',
                     fontWeight: 500,
-                    paddingLeft: '1.5rem'
+                    paddingLeft: '0.5rem'
                   }}
                 >
                   {r.smoking}

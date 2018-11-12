@@ -204,13 +204,14 @@ export default function ReservationForm({ restaurantData, history }) {
               <div style={{ color: 'red' }}>{errors.numberOfPeople}</div>
             )}
             <DatePickerStyled
-              readOnly={true}
               name="date"
+              type="date"
               label="Date *"
               onChange={e => {
                 setFieldValue('date', e._d)
               }}
               placehoderText="Date *"
+              disabledKeyboardNavigation
               value={
                 values.date
                   ? moment(values.date).format('Do MMM YYYY, ddd')
@@ -222,8 +223,9 @@ export default function ReservationForm({ restaurantData, history }) {
             )}
             <DatePickerStyled
               name="time"
+              type="time"
               label="Time *"
-              readOnly={true}
+              disabledKeyboardNavigation
               onChange={e => {
                 setFieldValue('time', e._d)
               }}
