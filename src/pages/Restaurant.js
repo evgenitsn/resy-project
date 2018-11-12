@@ -181,11 +181,19 @@ export default function Restaurant({ match, history }) {
         <HeroImage src={item.photos} />
         {isFavorite ? (
           <FavoriteButton onClick={() => removeFromFavories(item)}>
-            <img alt="Remove Fav Img" width={60} src={removeFromFavImg} />
+            <img
+              alt="Remove Fav Img"
+              style={{ width: '100%' }}
+              src={removeFromFavImg}
+            />
           </FavoriteButton>
         ) : (
           <FavoriteButton onClick={() => addToFavorites(item)}>
-            <img alt="Add Fav Img" width={60} src={addToFavImg} />
+            <img
+              alt="Add Fav Img"
+              style={{ width: '100%' }}
+              src={addToFavImg}
+            />
           </FavoriteButton>
         )}
       </div>
