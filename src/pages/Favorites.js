@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RestaurantCard from '../components/RestaurantCard'
 import Header from '../components/Header'
 import PageTitle from '../styled/PageTitle'
@@ -6,8 +6,22 @@ import Hr from '../styled/Hr'
 import { Row, Col } from 'react-simple-flex-grid'
 
 export default function Favorites() {
-  let favorites = JSON.parse(localStorage.getItem('favorites')) || []
-  console.log(favorites)
+  const [favorites, setFavorites] = useState(readFromLocalStorage('favorites'))
+
+  function readFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key)) || []
+  }
+
+  function updateToLocalStorage(key, update) {
+    localStorage.setItem(key, JSON.stringify(update))
+  }
+
+  function removeFromFavories(id) {
+    let current = readFromLocalStorage('favorites')
+    let update = current.filter(f => f.id !== id)
+    updateToLocalStorage('favorites', update)
+    setFavorites(update)
+  }
   return (
     <div>
       <Header />
@@ -23,6 +37,8 @@ export default function Favorites() {
           {favorites.map(fr => (
             <Col key={fr.id} xs={12} sm={4} md={4} lg={3} xl={3}>
               <RestaurantCard
+                removeFromFavories={removeFromFavories}
+                isFav={true}
                 id={fr.id}
                 title={fr.title}
                 location={fr.location}

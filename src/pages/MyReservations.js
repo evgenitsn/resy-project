@@ -22,7 +22,6 @@ const ReservationCardContainer = styled.div`
 
 export default function MyReservations() {
   let reservations = JSON.parse(localStorage.getItem('reservations')) || []
-  console.log(reservations)
   return (
     <>
       <Header />
@@ -42,7 +41,14 @@ export default function MyReservations() {
           }}
         >
           {reservations.map(r => (
-            <Col key={r.id} xs={12} sm={4} md={4} lg={3} xl={3}>
+            <Col
+              key={r.id + r.title + r.phone}
+              xs={12}
+              sm={4}
+              md={4}
+              lg={3}
+              xl={3}
+            >
               <ReservationCardContainer>
                 <div
                   style={{

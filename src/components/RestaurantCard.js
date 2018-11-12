@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Title from './Title'
 
 const CardContainer = styled.div`
+  position: relative;
   margin: 0.5rem;
   background: #485a7d;
   color: white;
@@ -21,6 +22,23 @@ const CardContainer = styled.div`
   @media screen and (max-width: 400px) {
     margin: 1rem;
     min-width: 220px;
+  }
+`
+
+const RemoveButton = styled.button`
+  position: absolute;
+  font-size: 3.5rem;
+  border-radius: 100%;
+  right: 1rem;
+  top: -0.8rem;
+  background: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  &:hover {
+    cursor: pointer;
   }
 `
 
@@ -88,10 +106,15 @@ export default function RestaurantCard({
   phone,
   description,
   reviews,
-  cardPhoto
+  cardPhoto,
+  isFav,
+  removeFromFavories
 }) {
   return (
     <CardContainer>
+      {isFav && (
+        <RemoveButton onClick={() => removeFromFavories(id)}>⨯</RemoveButton>
+      )}
       <Image src={cardPhoto} />
       <Title>{title}</Title>
       <Location>{location}</Location>
